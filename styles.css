@@ -1,14 +1,28 @@
-.gridContainer {
-    display:grid;
-    grid-template-columns: repeat(16, 1fr);
+body {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 30px;
+    margin: 0;
 }
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
 .squareDiv {
     aspect-ratio: 1;
-    background-color: rgb(243, 215, 137);
-    border: 1px solid rgb(78, 60, 12);
+    min-width: 0px;
+    background-color: rgb(252, 229, 247);
+    border: 1px solid rgb(37, 37, 37);
 }
 
 .squareDiv.hovered {
-    background-color: rgb(110, 84, 12);
-    border: 1px solid rgb(78, 60, 12);
+    background-color: rgb(181, 181, 250);
+}
+
+#clear {
+    margin: 15px 0px 20px 0px;
+    padding:5px 10px 5px 10px;
+    font-family: 'Courier New', Courier, monospace;
 }
