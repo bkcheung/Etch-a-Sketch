@@ -13,7 +13,6 @@ body {
     border: 1px solid rgb(131, 131, 131);
     border-radius: 15px;
     max-width: 800px;
-
     display: flex;
     flex-direction: column;
 }
@@ -61,22 +60,30 @@ h1 {
     flex-direction: column;
 }
 
-#colorMode, #rainbowMode, #monochromeMode, #clear, #eraser {
+#colorMode, #rainbowMode, #shadingMode, #clear, #eraser {
     background-color:  rgb(236, 214, 218);
     border: 1px solid  rgb(236, 214, 218);
     font-family: 'Courier New', Courier, monospace;
     font-size: 3vw;
-    color: rgb(68, 68, 68);
     padding: 0px;
     cursor: pointer;
 
 }
+#colorMode, #rainbowMode, #shadingMode, #eraser{
+    color: rgb(121, 120, 120);
 
-.resolution {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 3vw;
 }
 
+#colorMode.selected, #rainbowMode.selected, 
+#shadingMode.selected, #eraser.selected{
+    color: black;
+}
+
+.resolution, #clear {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    font-size: 3vw;
+}
 
 #colorPick{
     border: 1px solid rgb(236, 214, 218);
@@ -153,7 +160,7 @@ h1 {
 }
 
 @media screen and (min-width: 650px){
-    #colorMode, #rainbowMode, #monochromeMode, #clear, #eraser, .resolution, .footer {
+    #colorMode, #rainbowMode, #shadingMode, #clear, #eraser, .resolution, .footer {
         font-size: 18px;
     }
     .slider {

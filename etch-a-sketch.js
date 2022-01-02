@@ -24,7 +24,7 @@ function rainbowMode(element){
     element.style = `background: rgb(${r},${g},${b}, 0.8);`;
 }
 
-function monochromeMode(element){
+function shadingMode(element){
     let hoverCount = element.getAttribute('hover-count')
     let opacity = hoverCount/10;
     element.style = `background: rgb(0,0,0,${opacity});`
@@ -32,6 +32,14 @@ function monochromeMode(element){
 
 function eraserMode(element){
     element.style = `background: rgb(255,255,255);`
+}
+
+function removeSelectStyle(){
+    single.classList.remove('selected');
+    rainbow.classList.remove('selected');
+    shade.classList.remove('selected');
+    eraser.classList.remove('selected');
+    return;
 }
 
 function modeSelect(element, sketchMode){
@@ -42,8 +50,8 @@ function modeSelect(element, sketchMode){
         case 'rainbowMode': 
             rainbowMode(element)
             break;
-        case 'monochromeMode':
-            monochromeMode(element)
+        case 'shadingMode':
+            shadingMode(element)
             break;
         case 'eraser':
             eraserMode(element)
@@ -53,8 +61,7 @@ function modeSelect(element, sketchMode){
 
 function hover(element, sketchMode){
     element.addEventListener('mouseenter', e => {
-        element.classList.add('hovered');
-        if(sketchMode==='monochromeMode'){
+        if(sketchMode==='shadingMode'){
             let currentCount = parseInt(element.getAttribute('hover-count'));
             if(currentCount < 10){
                 currentCount += 1;
@@ -99,38 +106,47 @@ const container = document.querySelector('.gridContainer');
 const single = document.querySelector('#colorMode');
 const colorPick = document.querySelector('#colorPick');
 const rainbow = document.querySelector('#rainbowMode');
-const mono = document.querySelector('#monochromeMode');
+const shade = document.querySelector('#shadingMode');
 const eraser = document.querySelector('#eraser');
 const clear = document.querySelector('#clear');
 const resDisplay = document.querySelector('.resolution');
 const resolution = document.querySelector('#resRange');
 
 let sketchMode = 'colorMode';
-
 createGrid(resolution.value);
 
 single.addEventListener('click', ()=>{
+    removeSelectStyle();
+    single.classList.add('selected');
     sketchMode = 'colorMode';
     etchSketch(sketchMode);
 })
 
 colorPick.addEventListener('change', ()=>{
+    removeSelectStyle();
+    single.classList.add('selected');
     sketchMode = 'colorMode';
     etchSketch(sketchMode);
 })
 
 rainbow.addEventListener('click', ()=>{
+    removeSelectStyle();
+    rainbow.classList.add('selected');
     sketchMode = 'rainbowMode';
     etchSketch(sketchMode);
 })
 
 eraser.addEventListener('click', ()=>{
+    removeSelectStyle();
+    eraser.classList.add('selected');
     sketchMode = 'eraser';
     etchSketch(sketchMode);
 })
 
-mono.addEventListener('click', ()=>{
-    sketchMode = 'monochromeMode';
+shade.addEventListener('click', ()=>{
+    removeSelectStyle();
+    shade.classList.add('selected');
+    sketchMode = 'shadingMode';
     etchSketch(sketchMode);
 })
 
