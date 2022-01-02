@@ -20,16 +20,17 @@
                 <div class = "gridContainer"></div>
                 <div class = "controlBox">
                     <div class = "singleColor">
-                        <button type="button" id="colorMode">Single Color</button>
-                        <input type="color" id="colorPick" value = "#938cc9"></input>
+                        <button type="button" id="colorMode" title = "Hover over cell to draw in user selected color.">Single Color</button>
+                        <input type="color" id="colorPick" value = "#938cc9" title = "Click to change color."></input>
                     </div>
-                    <button type="button" id="rainbowMode">Rainbow</button>
-                    <button type="button" id="monochromeMode">Monochrome</button>
-                    <button type="button" id="clear">Clear</button>
+                    <button type="button" id="rainbowMode" title = "Cell displays a random color each time you hover over it.">Rainbow Mode</button>
+                    <button type="button" id="monochromeMode" title = "Each mouse pass adds 10% opacity to cell until it is fully black">Shading Mode</button>
+                    <button type="button" id="clear" title = "Clears the current grid">Clear</button>
                     
                     <div class="slideContainer">
                         <div class = "resolution">Grid: 16x16</div>  
-                        <input type="range" min="8" max="64" value="16" class="slider" id="resRange">
+                        <input type="range" min="8" max="64" value="16"
+                            class="slider" id="resRange" title="Slide to change grid size.">
                     </div>
 
                 </div>

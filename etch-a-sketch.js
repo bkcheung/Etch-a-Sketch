@@ -49,9 +49,7 @@ function hover(element, sketchMode){
         element.classList.add('hovered');
         if(sketchMode==='monochromeMode'){
             let currentCount = parseInt(element.getAttribute('hover-count'));
-            console.log(currentCount);
             if(currentCount < 10){
-                console.log(currentCount);
                 currentCount += 1;
                 element.setAttribute('hover-count',currentCount);
             }
