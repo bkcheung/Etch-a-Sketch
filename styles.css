@@ -16,17 +16,10 @@ body {
 
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: space-around;
-    flex: 1;
 }
 
 .top, .bottom {
     margin: 15px;
-}
-
-.middle {
-    margin: 0px 15px 0px 15px;
 }
 
 h1 {
@@ -38,10 +31,9 @@ h1 {
 }
 
 .middle {
+    margin: 0px 15px 0px 15px;
     display: flex;
-    display: 1;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .gridContainer{
@@ -49,6 +41,8 @@ h1 {
     max-width: 400px;
     width: 50vw;
     margin-right:20px;
+    background-color: white;
+
 }
 
 .controlBox {
@@ -60,21 +54,30 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+    max-width: 175px;
+    width: 25vw;
 }
 .singleColor{
     display: flex;
     flex-direction: column;
 }
 
-#colorMode, #rainbowMode, #monochromeMode, #clear, .res, .resolution {
+#colorMode, #rainbowMode, #monochromeMode, #clear {
     background-color:  rgb(236, 214, 218);
     border: 1px solid  rgb(236, 214, 218);
     font-family: 'Courier New', Courier, monospace;
-    text-align: left;
     font-size: 3vw;
     color: rgb(68, 68, 68);
     padding: 0px;
+    cursor: pointer;
+
 }
+
+.resolution {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3vw;
+}
+
 
 #colorPick{
     border: 1px solid rgb(236, 214, 218);
@@ -82,6 +85,7 @@ h1 {
     width: 10vw;
     padding: 0px;
     margin: 0px;
+    cursor: pointer;
 }
 
 .slider {
@@ -105,7 +109,7 @@ h1 {
     width: 15px;
     height: 15px;
     border-radius: 50%; 
-    background: #7aa8ee;
+    background: #c48282;
     border: 1px solid rgb(83, 83, 83); 
     cursor: pointer;
 }
@@ -114,7 +118,7 @@ h1 {
     width: 15px;
     height: 15px;
     border-radius: 50%; 
-    background: #7aa8ee;
+    background: #c48282;
     cursor: pointer;
 }
 
@@ -137,22 +141,28 @@ h1 {
 
 .squareDiv {
     aspect-ratio: 1;
-    min-width: 0px;
-    background-color: rgb(240, 239, 239);
+    min-width: 1px;
+    min-height: 1px;
+    background-color: rgb(255, 255, 255);
     border: 1px solid rgb(206, 206, 206);
 }
 
+/* Sizing for large screens */
 @media screen and (min-width: 500px){
-    #colorMode, #rainbowMode, #monochromeMode, #clear, .res, .resolution, .footer {
+    #colorMode, #rainbowMode, #monochromeMode, #clear, .resolution, .footer {
         font-size: 18px;
     }
     h1 {
         font-size: 32px;
     }
-}
+
 @media screen and (min-width: 800px){
     .knob{
         height: 75px;
         width: 75px
+    }
+    .middle {
+        margin: 0px 7vw 0px 7vw;
+        gap: 3vw;
     }
 }

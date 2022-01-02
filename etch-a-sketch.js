@@ -1,13 +1,20 @@
-function createGridStyle(numSquares){
-    const styleElement = document.querySelector('#gridStyle');
-    let styleContent = `.gridContainer { grid-template-columns: repeat(${numSquares}, 1fr);}`;
-    styleElement.textContent = styleContent;
+function clearHover(){
+    const squareDiv = document.querySelectorAll('.squareDiv');
+    squareDiv.forEach(div => {
+        div.classList.remove('hovered');
+        div.setAttribute('hover-count',0);
+        div.style = "";
+    });
 }
 
-function createDiv(){
-    const squareDiv = document.createElement('div');
-    squareDiv.classList.add('squareDiv');
-    container.append(squareDiv);
+function resize(newRes){
+    container.textContent ="";
+    createGrid(newRes);
+}
+
+function colorMode(element){
+    const userColor = document.querySelector('#colorPick').value;
+    element.style = `background: ${userColor};`;
 }
 
 function rainbowMode(element){
@@ -17,9 +24,10 @@ function rainbowMode(element){
     element.style = `background: rgb(${r},${g},${b}, 0.8);`;
 }
 
-function colorMode(element){
-    const userColor = document.querySelector('#colorPick').value;
-    element.style = `background: ${userColor};`;
+function monochromeMode(element){
+    let hoverCount = element.getAttribute('hover-count')
+    let opacity = hoverCount/10;
+    element.style = `background: rgb(0,0,0,${opacity});`
 }
 
 function modeSelect(element, sketchMode){
@@ -30,12 +38,24 @@ function modeSelect(element, sketchMode){
         case 'rainbowMode': 
             rainbowMode(element)
             break;
+        case 'monochromeMode':
+            monochromeMode(element)
+            break;
     }
 }
 
 function hover(element, sketchMode){
     element.addEventListener('mouseenter', e => {
         element.classList.add('hovered');
+        if(sketchMode==='monochromeMode'){
+            let currentCount = parseInt(element.getAttribute('hover-count'));
+            console.log(currentCount);
+            if(currentCount < 10){
+                console.log(currentCount);
+                currentCount += 1;
+                element.setAttribute('hover-count',currentCount);
+            }
+        }
         modeSelect(element, sketchMode);
     });
     // element.addEventListener('touchstart', e => element.classList.add('hovered'));
@@ -57,17 +77,17 @@ function createGrid(numSquares){
     etchSketch(sketchMode);
 }
 
-function clearHover(){
-    const squareDiv = document.querySelectorAll('.squareDiv');
-    squareDiv.forEach(div => {
-        div.classList.remove('hovered');
-        div.style = "";
-    });
+function createDiv(){
+    const squareDiv = document.createElement('div');
+    squareDiv.classList.add('squareDiv');
+    squareDiv.setAttribute('hover-count',0);
+    container.append(squareDiv);
 }
 
-function resize(newRes){
-    container.textContent ="";
-    createGrid(newRes);
+function createGridStyle(numSquares){
+    const styleElement = document.querySelector('#gridStyle');
+    let styleContent = `.gridContainer { grid-template-columns: repeat(${numSquares}, 1fr);}`;
+    styleElement.textContent = styleContent;
 }
 
 const container = document.querySelector('.gridContainer');
@@ -98,12 +118,17 @@ rainbow.addEventListener('click', ()=>{
     etchSketch(sketchMode);
 })
 
+mono.addEventListener('click', ()=>{
+    sketchMode = 'monochromeMode';
+    etchSketch(sketchMode);
+})
+
 clear.addEventListener('click', ()=>{
     clearHover();
 })
 
 resolution.addEventListener('change', ()=>{
     newRes = resolution.value;
-    resDisplay.textContent = `${newRes}x${newRes}`
+    resDisplay.textContent = `Grid: ${newRes}x${newRes}`
     resize(newRes);
 })
