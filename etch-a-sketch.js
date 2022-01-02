@@ -30,6 +30,10 @@ function monochromeMode(element){
     element.style = `background: rgb(0,0,0,${opacity});`
 }
 
+function eraserMode(element){
+    element.style = `background: rgb(255,255,255);`
+}
+
 function modeSelect(element, sketchMode){
     switch (sketchMode) {
         case 'colorMode': 
@@ -40,6 +44,9 @@ function modeSelect(element, sketchMode){
             break;
         case 'monochromeMode':
             monochromeMode(element)
+            break;
+        case 'eraser':
+            eraserMode(element)
             break;
     }
 }
@@ -93,6 +100,7 @@ const single = document.querySelector('#colorMode');
 const colorPick = document.querySelector('#colorPick');
 const rainbow = document.querySelector('#rainbowMode');
 const mono = document.querySelector('#monochromeMode');
+const eraser = document.querySelector('#eraser');
 const clear = document.querySelector('#clear');
 const resDisplay = document.querySelector('.resolution');
 const resolution = document.querySelector('#resRange');
@@ -113,6 +121,11 @@ colorPick.addEventListener('change', ()=>{
 
 rainbow.addEventListener('click', ()=>{
     sketchMode = 'rainbowMode';
+    etchSketch(sketchMode);
+})
+
+eraser.addEventListener('click', ()=>{
+    sketchMode = 'eraser';
     etchSketch(sketchMode);
 })
 

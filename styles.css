@@ -61,7 +61,7 @@ h1 {
     flex-direction: column;
 }
 
-#colorMode, #rainbowMode, #monochromeMode, #clear {
+#colorMode, #rainbowMode, #monochromeMode, #clear, #eraser {
     background-color:  rgb(236, 214, 218);
     border: 1px solid  rgb(236, 214, 218);
     font-family: 'Courier New', Courier, monospace;
@@ -153,7 +153,7 @@ h1 {
 }
 
 @media screen and (min-width: 650px){
-    #colorMode, #rainbowMode, #monochromeMode, #clear, .resolution, .footer {
+    #colorMode, #rainbowMode, #monochromeMode, #clear, #eraser, .resolution, .footer {
         font-size: 18px;
     }
     .slider {
