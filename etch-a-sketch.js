@@ -1,6 +1,6 @@
 function createGridStyle(numSquares){
     const styleElement = document.querySelector('#gridStyle');
-    let styleContent = `.gridContainer { display: grid; max-width: 500px; grid-template-columns: repeat(${numSquares}, 1fr);}`;
+    let styleContent = `.gridContainer { grid-template-columns: repeat(${numSquares}, 1fr);}`;
     styleElement.textContent = styleContent;
 }
 
@@ -10,38 +10,100 @@ function createDiv(){
     container.append(squareDiv);
 }
 
+function rainbowMode(element){
+    let r = Math.floor(Math.random()*256);
+    let g = Math.floor(Math.random()*256);
+    let b = Math.floor(Math.random()*256);
+    element.style = `background: rgb(${r},${g},${b}, 0.8);`;
+}
+
+function colorMode(element){
+    const userColor = document.querySelector('#colorPick').value;
+    element.style = `background: ${userColor};`;
+}
+
+function modeSelect(element, sketchMode){
+    switch (sketchMode) {
+        case 'colorMode': 
+            colorMode(element);
+            break;
+        case 'rainbowMode': 
+            rainbowMode(element)
+            break;
+    }
+}
+
+function hover(element, sketchMode){
+    element.addEventListener('mouseenter', e => {
+        element.classList.add('hovered');
+        modeSelect(element, sketchMode);
+    });
+    // element.addEventListener('touchstart', e => element.classList.add('hovered'));
+}
+
+function etchSketch(sketchMode){
+    const squareDiv = document.querySelectorAll('.squareDiv');
+    squareDiv.forEach(div => {
+        hover(div, sketchMode);
+    });
+}
+
 function createGrid(numSquares){
     createGridStyle(numSquares);
     for(i=0; i<numSquares; i++){ 
         for(j=0; j<numSquares; j++){
             createDiv();}
     }
+    etchSketch(sketchMode);
 }
 
-function hover(element, className){
-    element.addEventListener('mouseenter', e => element.classList.add(className));
-    element.addEventListener('touchstart', e => element.classList.add(className));
-}
-
-function etchSketch(){
+function clearHover(){
     const squareDiv = document.querySelectorAll('.squareDiv');
     squareDiv.forEach(div => {
-        hover(div, 'hovered');
+        div.classList.remove('hovered');
+        div.style = "";
     });
 }
 
+function resize(newRes){
+    container.textContent ="";
+    createGrid(newRes);
+}
+
 const container = document.querySelector('.gridContainer');
+const single = document.querySelector('#colorMode');
+const colorPick = document.querySelector('#colorPick');
+const rainbow = document.querySelector('#rainbowMode');
+const mono = document.querySelector('#monochromeMode');
 const clear = document.querySelector('#clear');
-let numSquares = 0;
-createGrid(16);
-etchSketch();
+const resDisplay = document.querySelector('.resolution');
+const resolution = document.querySelector('#resRange');
+
+let sketchMode = 'colorMode';
+
+createGrid(resolution.value);
+
+single.addEventListener('click', ()=>{
+    sketchMode = 'colorMode';
+    etchSketch(sketchMode);
+})
+
+colorPick.addEventListener('change', ()=>{
+    sketchMode = 'colorMode';
+    etchSketch(sketchMode);
+})
+
+rainbow.addEventListener('click', ()=>{
+    sketchMode = 'rainbowMode';
+    etchSketch(sketchMode);
+})
 
 clear.addEventListener('click', ()=>{
-    numSquares = 0;
-    container.textContent = "";
-    while(numSquares===0 || numSquares>100 || numSquares < 0){
-        numSquares = window.prompt('Enter number of squares per side (1 to 100)');
-    }
-    createGrid(numSquares);
-    etchSketch();
+    clearHover();
+})
+
+resolution.addEventListener('change', ()=>{
+    newRes = resolution.value;
+    resDisplay.textContent = `${newRes}x${newRes}`
+    resize(newRes);
 })
