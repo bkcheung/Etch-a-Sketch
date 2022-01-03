@@ -27,7 +27,6 @@ function rainbowMode(element){
 function shadingMode(element){
     let hoverCount = element.getAttribute('hover-count')
     let opacity = hoverCount/10;
-    console.log(opacity);
     element.style = `background: rgb(0,0,0,${opacity});`
 }
 
@@ -86,7 +85,6 @@ function hover(element, sketchMode){
         }
         if(selectedEl.className==='squareDiv'){
             modeSelect(selectedEl, sketchMode);
-            console.log(selectedEl);
         }
     });
 }
