@@ -27,6 +27,7 @@ function rainbowMode(element){
 function shadingMode(element){
     let hoverCount = element.getAttribute('hover-count')
     let opacity = hoverCount/10;
+    console.log(opacity);
     element.style = `background: rgb(0,0,0,${opacity});`
 }
 
@@ -59,18 +60,35 @@ function modeSelect(element, sketchMode){
     }
 }
 
+function shadeHover(element){
+    let currentCount = parseInt(element.getAttribute('hover-count'));
+    if(currentCount < 10){
+        currentCount += 1;
+        element.setAttribute('hover-count',currentCount);
+    }
+}
+
 function hover(element, sketchMode){
     element.addEventListener('mouseenter', e => {
         if(sketchMode==='shadingMode'){
-            let currentCount = parseInt(element.getAttribute('hover-count'));
-            if(currentCount < 10){
-                currentCount += 1;
-                element.setAttribute('hover-count',currentCount);
-            }
+            shadeHover(element);
         }
         modeSelect(element, sketchMode);
     });
-    // element.addEventListener('touchstart', e => element.classList.add('hovered'));
+    element.addEventListener('touchmove', e => {
+        // get XY coords of element
+        let clientX = e.touches[0].clientX;
+        let clientY = e.touches[0].clientY;
+        let selectedEl = document.elementFromPoint(clientX, clientY)
+
+        if(sketchMode==='shadingMode'){
+            shadeHover(selectedEl);
+        }
+        if(selectedEl.className==='squareDiv'){
+            modeSelect(selectedEl, sketchMode);
+            console.log(selectedEl);
+        }
+    });
 }
 
 function etchSketch(sketchMode){
