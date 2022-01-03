@@ -88,8 +88,8 @@ h1 {
 #colorPick{
     border: 1px solid rgb(236, 214, 218);
     background-color:rgb(236, 214, 218);
-    width: 21vw;
-    height: 10.5vw;
+    width: 10vw;
+    height: 10vw;
     padding: 0px;
     margin: 0px;
     cursor: pointer;
@@ -152,6 +152,7 @@ h1 {
     min-height: 1px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(206, 206, 206);
+    touch-action: none;
 }
 
 /* Sizing for large screens */
