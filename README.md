@@ -8,3 +8,5 @@ Etch-a-sketch game created using HTML, CSS, Javascript.
   * Adding event listeners for mouse and touch events
   * Updated implementation required to allow shading of correct divs on touch devices
   * Working with different input types, ie color picker
+
+[Demo here](https://bkcheung.github.io/etch-a-sketch/) 👈🏻
