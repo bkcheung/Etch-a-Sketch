@@ -9,4 +9,4 @@ Etch-a-sketch game created using HTML, CSS, Javascript.
   * Updated implementation required to allow shading of correct divs on touch devices
   * Working with different input types, ie color picker
 
-[Demo here](https://bkcheung.github.io/etch-a-sketch/) 👈🏻
+[Demo here](https://bkcheung.github.io/Etch-a-Sketch/) 👈🏻
